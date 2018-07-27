@@ -5,12 +5,12 @@
 
 Sorting
 
-  Implement bubble sort
+  1. Implement bubble sort
 
-  Implement selection sort
+  2. Implement selection sort
 
-  Implement insertion sort
+  3. Implement insertion sort
 
-  Implement merge sort
+  4. Implement merge sort
 
-  Implement quick sort
+  5. Implement quick sort

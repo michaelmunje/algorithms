@@ -5,28 +5,28 @@
 
 Trees
 
-  Implement a BST with insert and delete functions
+  1. Implement a BST with insert and delete functions
 
-  Print a tree using BFS and DFS
+  2. Print a tree using BFS and DFS
 
-  Write a function that determines if a tree is a BST
+  3. Write a function that determines if a tree is a BST
 
-  Find the smallest element in a BST
+  4. Find the smallest element in a BST
 
-  Find the 2nd largest number in a BST
+  5. Find the 2nd largest number in a BST
 
-  Given a binary tree which is a sum tree (child nodes add to parent), write an algorithm to determine whether the tree is a valid sum tree
+  6. Given a binary tree which is a sum tree (child nodes add to parent), write an algorithm to determine whether the tree is a valid sum tree
 
-  Find the distance between 2 nodes in a BST and a normal binary tree
+  7. Find the distance between 2 nodes in a BST and a normal binary tree
 
-  Print the coordinates of every node in a binary tree, where root is 0,0
+  8. Print the coordinates of every node in a binary tree, where root is 0,0
 
-  Print a tree by levels
+  9. Print a tree by levels
 
-  Given a binary tree which is a sum tree, write an algorithm to determine whether the tree is a valid sum tree
+  10. Given a binary tree which is a sum tree, write an algorithm to determine whether the tree is a valid sum tree
 
-  Given a tree, verify that it contains a subtree.
+  11. Given a tree, verify that it contains a subtree.
 
-  HARD: Find the max distance between 2 nodes in a BST.
+  12. HARD: Find the max distance between 2 nodes in a BST.
 
-  HARD: Construct a BST given the pre-order and in-order traversal Strings
+  13. HARD: Construct a BST given the pre-order and in-order traversal Strings
