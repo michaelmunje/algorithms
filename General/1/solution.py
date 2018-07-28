@@ -1,7 +1,7 @@
 # General Problem 1:
 # Find the most frequent integer in an array
 
-# Solution: Store the array into a dictionary while counting the occurences
+# Solution:
 # Store the array into a dictionary while counting the occurences
 # Then print out max value in dictionary
 
