@@ -1,13 +1,13 @@
 # General Problem 9:
-# Find the most frequent integer in an array
+# Use dynamic programming to find the first X prime numbers
 
-# Solution: Store the array into a dictionary while counting the occurences
-# Store the array into a dictionary while counting the occurences
-# Then print out max value in dictionary
+# Solution: 
+# Sieve of Eratosthenes
+# Start with a boolean list that represents primality of ints from 2 to numOfPrimes + 1
+# For each number from 2 to numOfPrimes, set all of its multiples to false, except for the initial
 
-# function printMaxCount
-# Takes an array of integers as the input
-# Outputs the element that is repeated the most
+# function printPrimesBruteForce
+# Checks to see if each number has any multiples, if so, it is not prime
 # takes 0.6 s for 5000
 def printPrimesBruteForce(numOfPrimes):
 	primes = list()
@@ -21,6 +21,9 @@ def printPrimesBruteForce(numOfPrimes):
 	print(primes)
 	print(len(primes))
 
+
+# function printPrimesBetter
+# Uses the sieve of eratosthenes method to compute in linear time as opposed to poly
 # takes 0.0 s for 5000
 def printPrimesBetter(numOfPrimes):
 	primes = [True] * (numOfPrimes + 1)
