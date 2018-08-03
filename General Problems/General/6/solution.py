@@ -1,5 +1,5 @@
-# General Problem 1:
-# Find the only element in an array that only occurs once.
+# General Problem 6:
+# Find the common elements of 2 int arrays
 
 # Solution:
 # Store the first array into a dictionary 
