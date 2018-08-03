@@ -1,14 +1,14 @@
 # General Problem 1:
-# Find the most frequent integer in an array
+# Find the only element in an array that only occurs once.
 
 # Solution:
 # Store the array into a dictionary while counting the occurences
-# Then print out max value in dictionary
+# Then print out values that occur once, if there is exactly one
 
-# function printMaxCount
+# function printOneCount
 # Takes an array of integers as the input
-# Outputs the element that is repeated the most
-def printMinCount(arr):
+# Outputs the element that is repeated exactly once
+def printOneCount(arr):
 	myDict = dict()
 	for i in arr:
 		myDict[i] = myDict.get(i,0) + 1
@@ -24,4 +24,4 @@ def printMinCount(arr):
 
 if __name__ == '__main__':
 	arr = [2, 5, 8, 5, 2, 2, 2, 5, 5]
-	printMinCount(arr)
+	printOneCount(arr)
