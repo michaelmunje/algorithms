@@ -16,7 +16,6 @@ def getFibonacciRecursive(fibIndex,fibonacciRec):
 		currentSum = 1
 	if (fibIndex >= len(fibonacciRec)):
 		fibonacciRec.insert(fibIndex, currentSum)
-	print(fibIndex)
 	return currentSum
 
 def putFibBasis(fibonacciRec):
@@ -32,11 +31,11 @@ def getFibonacciDynamic(numOfFib,fibonacci):
 			fibonacci.insert(i + 2, fibonacci[i] + fibonacci[i + 1])
 
 if __name__ == '__main__':
-	x = 10
+	x = 33
 	fibonacci = list()
 	fibonacciRec = list()
 	getFibonacciDynamic(x,fibonacci)
 	print(fibonacci)
 	putFibBasis(fibonacciRec)
-	getFibonacciRecursive(x - 1,fibonacciRec)
+	getFibonacciRecursive(x + 1,fibonacciRec)
 	print(fibonacciRec)
