@@ -1,4 +1,4 @@
-# General Problem 1:
+# General Problem 5:
 # Find the only element in an array that only occurs once.
 
 # Solution:
