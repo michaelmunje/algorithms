@@ -8,6 +8,20 @@
 
 import math
 
+def changeBase(inputInt, base):
+	outputString = ""
+	currentNum = inputInt
+	if (base == 1):
+		logEnd = 1
+		print("Error. Log(1) = 1. Not a valid base.")
+	else:
+		logEnd = int(math.log(inputInt, base)) + 1
+	for i in range(0, logEnd):
+		outputString = outputString + str(currentNum % base)
+		currentNum = currentNum // base
+	outputString = outputString[::-1]
+	return outputString
+
 def intToBin(inputInt):
 	outputString = ""
 	currentNum = inputInt
@@ -21,6 +35,7 @@ def intToBin(inputInt):
 	return outputString
 
 if __name__ == '__main__':
-	inputInt = 4096
-	outputString = intToBin(inputInt)
+	inputInt = 4097
+	base = 11
+	outputString = changeBase(inputInt, base)
 	print(outputString)
