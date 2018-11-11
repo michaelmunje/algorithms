@@ -17,6 +17,23 @@ def URLify(s):  # runtime: O(n)
     return outString
 
 
+# def URLifyInPlace(s, trueLength):
+    # since this is python, strings are immutable
+    # therefore i present the algorithm applicable
+    # to a more suitable programming language
+    # currentTrueLength = trueLength
+    # for (int i = 0; i < currentTrueLength; i++)
+    # {
+    #    if (s[i] == " ")
+    #        for (int j = currentTrueLength; j > i + 1; j--)
+    #           s[j + 2] = s[j - 1]
+    #        s[i] = "%"
+    #        s[i + 1] = "2"
+    #        s[i + 2] = "0"
+    #        currentTrueLength += 3;
+    # }
+
+
 def testURLify():
     assert URLify("abc cba") == "abc%20cba"
     assert URLify("Mr John Smith") == "Mr%20John%20Smith"
