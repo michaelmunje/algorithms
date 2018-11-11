@@ -1,6 +1,4 @@
 [
-  "1-1.py::testUniqueStrings",
-  "1-1.py::testNonUniqueStrings",
-  "1-1.py::testUniqueStringsNoDs",
-  "1-1.py::testNonUniqueStringsNoDs"
+  "1-2.py::testPermutationStrings",
+  "1-2.py::testNonUniqueStrings"
 ]
