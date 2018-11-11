@@ -1,4 +1,4 @@
 [
-  "1-3.py::testURLify",
-  "1-3.py::testURLifyNoSpaces"
+  "1-4.py::testPalPerm",
+  "1-4.py::testNoPalPerm"
 ]
