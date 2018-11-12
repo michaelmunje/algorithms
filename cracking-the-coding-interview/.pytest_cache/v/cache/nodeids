@@ -12,5 +12,6 @@
   "1-5.py::testOneAway",
   "1-5.py::testNotOneAway",
   "1-6.py::testCompression",
-  "1-6.py::testNoCompression"
+  "1-6.py::testNoCompression",
+  "1-7.py::testTranspose"
 ]
