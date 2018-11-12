@@ -10,5 +10,7 @@
   "1-4.py::testPalPerm",
   "1-4.py::testNoPalPerm",
   "1-5.py::testOneAway",
-  "1-5.py::testNotOneAway"
+  "1-5.py::testNotOneAway",
+  "1-6.py::testCompression",
+  "1-6.py::testNoCompression"
 ]
