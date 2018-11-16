@@ -11,11 +11,3 @@
 # 62	"C-"
 # 89	"A"
 # 107	"A+"
-
-
-def ryerson_letter_grade(pct):
-    return "F"
-
-
-if __name__ == '__main__':
-    ryerson_letter_grade(45)
