@@ -23,7 +23,7 @@ def isUniqueNoDs(s):
 def testUniqueStrings():
     assert isUnique("abcdefg") is True  # true
     assert isUnique("man") is True  # true
-    assert isUnique("") is True  # true
+    assert isUnique("") is True  # true 
 
 
 def testNonUniqueStrings():
