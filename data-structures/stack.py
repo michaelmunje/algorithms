@@ -13,7 +13,7 @@ class Stack:
             self.length -= 1
             return popped_element
         else:
-            raise Exception('Cannot pop empty Queue')
+            raise Exception('Cannot pop empty Stack')
 
     def push(self, new):
         self.elements.append(new)
