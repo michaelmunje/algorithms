@@ -7,7 +7,7 @@ class Stack:
         self.length = 0
 
     def pop(self):
-        if not self.__is_empty():
+        if not self.is_empty():
             popped_element = self.elements[-1]
             self.elements = self.elements[:-1]
             self.length -= 1
@@ -19,7 +19,7 @@ class Stack:
         self.elements.append(new)
         self.length += 1
 
-    def __is_empty(self):
+    def is_empty(self):
         return self.length == 0
 
 
