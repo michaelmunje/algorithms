@@ -119,6 +119,21 @@ def insertion_sort(a):
     return a
 
 
+def selection_sort(a):
+    if not a:
+        return a
+
+    for i in range(len(a)):
+        minimum = a[i]
+        minimum_index = i
+        for j in range(i, len(a)):
+            if a[j] < minimum:
+                minimum = a[j]
+                minimum_index = j
+        a[i], a[minimum_index] = a[minimum_index], a[i]
+    return a
+
+
 class TestSolution(unittest.TestCase):
 
     def test_case1(self):
@@ -142,6 +157,16 @@ class TestSolution(unittest.TestCase):
         self.assertEqual(insertion_sort(a), [1, 1, 2, 2, 4, 5])
         a = [5, 2, 1, 4, 2, 1, 10]
         self.assertEqual(insertion_sort(a), [1, 1, 2, 2, 4, 5, 10])
+
+    def test_case4(self):
+        a = [1, 2, 3]
+        self.assertEqual(selection_sort(a), [1, 2, 3])
+        a = [3, 2, 1]
+        self.assertEqual(selection_sort(a), [1, 2, 3])
+        a = [5, 2, 1, 4, 2, 1]
+        self.assertEqual(selection_sort(a), [1, 1, 2, 2, 4, 5])
+        a = [5, 2, 1, 4, 2, 1, 10]
+        self.assertEqual(selection_sort(a), [1, 1, 2, 2, 4, 5, 10])
 
 
 if __name__ == '__main__':
