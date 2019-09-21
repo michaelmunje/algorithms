@@ -75,21 +75,22 @@ def merge(a, b):
             merged_array.append(b[j])
             j += 1
 
-    if i < len(a):
+    while i < len(a):
         merged_array.append(a[i])
-    elif j < len(b):
+        i += 1
+
+    while j < len(b):
         merged_array.append(b[j])
+        j += 1
 
     return merged_array
 
 
 def merge_sort(a, l, r):
-    if r - 1 > l:
+    if r > l:
         return merge(merge_sort(a, l, (l+r) // 2), merge_sort(a, (l+r) // 2 + 1, r))
-    elif l == r:
-        return [a[l]]
     else:
-        return [a[l], a[r]] if a[l] < a[r] else [a[r], a[l]]
+        return [a[l]]
 
 
 def bubble_sort(a):
@@ -199,6 +200,16 @@ class TestSolution(unittest.TestCase):
         a = [5, 2, 1, 4, 2, 1, 10]
         quick_sort(a)
         self.assertEqual(a, [1, 1, 2, 2, 4, 5, 10])
+
+    def test_case6(self):
+        a = [1, 2, 3]
+        self.assertEqual(merge_sort_all(a), [1, 2, 3])
+        a = [3, 2, 1]
+        self.assertEqual(merge_sort_all(a), [1, 2, 3])
+        a = [5, 2, 1, 4, 2, 1]
+        self.assertEqual(merge_sort_all(a), [1, 1, 2, 2, 4, 5])
+        a = [5, 2, 1, 4, 2, 1, 10]
+        self.assertEqual(merge_sort_all(a), [1, 1, 2, 2, 4, 5, 10])
 
 
 if __name__ == '__main__':
