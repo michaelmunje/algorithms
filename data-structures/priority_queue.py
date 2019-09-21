@@ -38,7 +38,7 @@ class Heap:  # Min heap
             self.values[swap_i] = tmp
             i = swap_i
 
-        return old_max.value
+        return old_max.value, old_max.priority
 
     def add_node(self, item):
         self.values.append(item)
@@ -62,7 +62,7 @@ class PQueue:
         self.length = 0
 
     def dequeue(self):
-        if not self.__is_empty():
+        if not self.is_empty():
             self.length -= 1
             return self.heap.remove_min()
         else:
@@ -75,7 +75,7 @@ class PQueue:
     def __repr__(self):
         return str(self.heap)
 
-    def __is_empty(self):
+    def is_empty(self):
         return self.length == 0
 
 
@@ -84,7 +84,7 @@ class TestSolution(unittest.TestCase):
     def test_case1(self):
         pq = PQueue()
         pq.enqueue(5, 1)
-        self.assertEqual(pq.dequeue(), 5)
+        self.assertEqual(pq.dequeue(), (5, 1))
 
     def test_case2(self):
         pq = PQueue()
@@ -92,9 +92,9 @@ class TestSolution(unittest.TestCase):
         pq.enqueue(20, 2)
         pq.enqueue('hi', 3)
 
-        self.assertEqual(pq.dequeue(), 5)
-        self.assertEqual(pq.dequeue(), 20)
-        self.assertEqual(pq.dequeue(), 'hi')
+        self.assertEqual(pq.dequeue(), (5, 1))
+        self.assertEqual(pq.dequeue(), (20, 2))
+        self.assertEqual(pq.dequeue(), ('hi', 3))
 
     def test_case3(self):
         pq = PQueue()
@@ -107,9 +107,9 @@ class TestSolution(unittest.TestCase):
         pq.enqueue(20, 2)
         pq.enqueue('hi', 1)
 
-        self.assertEqual(pq.dequeue(), 5)
-        self.assertEqual(pq.dequeue(), 'hi')
-        self.assertEqual(pq.dequeue(), 20)
+        self.assertEqual(pq.dequeue(), (5, 1))
+        self.assertEqual(pq.dequeue(), ('hi', 1))
+        self.assertEqual(pq.dequeue(), (20, 2))
 
     def test_case5(self):
         pq = PQueue()
