@@ -134,6 +134,24 @@ def selection_sort(a):
     return a
 
 
+def quick_sort(a):
+    return quick_sort_rec(a, 0, len(a) - 1)
+
+
+def quick_sort_rec(a, l, r):
+    if l < r:
+        pivot = a[r]
+        i = l
+        for j in range(l, r):
+            if a[j] < pivot:
+                a[i], a[j] = a[j], a[i]
+                i += 1
+        a[i], a[r] = a[r], a[i]
+
+        quick_sort_rec(a, l, i - 1)
+        quick_sort_rec(a, i + 1, r)
+
+
 class TestSolution(unittest.TestCase):
 
     def test_case1(self):
@@ -167,6 +185,20 @@ class TestSolution(unittest.TestCase):
         self.assertEqual(selection_sort(a), [1, 1, 2, 2, 4, 5])
         a = [5, 2, 1, 4, 2, 1, 10]
         self.assertEqual(selection_sort(a), [1, 1, 2, 2, 4, 5, 10])
+
+    def test_case5(self):
+        a = [1, 2, 3]
+        quick_sort(a)
+        self.assertEqual(a, [1, 2, 3])
+        a = [3, 2, 1]
+        quick_sort(a)
+        self.assertEqual(a, [1, 2, 3])
+        a = [5, 2, 1, 4, 2, 1]
+        quick_sort(a)
+        self.assertEqual(a, [1, 1, 2, 2, 4, 5])
+        a = [5, 2, 1, 4, 2, 1, 10]
+        quick_sort(a)
+        self.assertEqual(a, [1, 1, 2, 2, 4, 5, 10])
 
 
 if __name__ == '__main__':
