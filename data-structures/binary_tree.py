@@ -59,22 +59,14 @@ class Heap:  # Max heap, min heap can be obtained trivially
         if current_i == 0:
             return
 
-        while self.values[current_i] > self.values[current_i - 1 // 2]:
+        while current_i > 0 and self.values[current_i] > self.values[(current_i - 1) // 2]:
             tmp = self.values[current_i]
-            self.values[current_i] = self.values[current_i - 1 // 2]
-            self.values[current_i - 1 // 2] = tmp
-            current_i = current_i - 1 // 2
-
-    def tree_string(self, current_node):
-        if not current_node:
-            return ''
-        else:
-            return str(current_node.value) + '\n' \
-                   + '(' + self.tree_string(current_node.left) + ')' \
-                   + '(' + self.tree_string(current_node.right) + ')'
+            self.values[current_i] = self.values[(current_i - 1) // 2]
+            self.values[(current_i - 1) // 2] = tmp
+            current_i = (current_i - 1) // 2
 
     def __repr__(self):
-        return str(self.values) #self.tree_string(self.head)
+        return str(self.values)
 
 
 class TestSolution(unittest.TestCase):
@@ -106,6 +98,7 @@ class TestSolution(unittest.TestCase):
         heap.add_node(31)
         heap.remove_max()
         heap.remove_max()
+        print(heap)
         self.assertTrue(str(heap) == '[13, 12]')
 
     def test_case_4(self):
