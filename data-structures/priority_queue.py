@@ -7,7 +7,7 @@ class PriorityItem:
         self.priority = priority
 
 
-class Heap:  # Max heap, min heap can be obtained trivially
+class Heap:  # Min heap
     def __init__(self):
         self.values = []
 
@@ -24,7 +24,7 @@ class Heap:  # Max heap, min heap can be obtained trivially
             swap_i = 2*i+1
 
             if 2*i + 2 < len(self.values):
-                if max(self.values[2*i+1].priority, self.values[2*i+2].priority) >= self.values[i].priority:
+                if min(self.values[2*i+1].priority, self.values[2*i+2].priority) >= self.values[i].priority:
                     break
 
                 if self.values[2*i+2].priority < self.values[2*i+1].priority:
@@ -46,11 +46,11 @@ class Heap:  # Max heap, min heap can be obtained trivially
         if current_i == 0:
             return
 
-        while self.values[current_i].priority < self.values[current_i - 1 // 2].priority:
+        while current_i > 0 and self.values[current_i].priority < self.values[(current_i - 1) // 2].priority:
             tmp = self.values[current_i]
-            self.values[current_i] = self.values[current_i - 1 // 2]
-            self.values[current_i - 1 // 2] = tmp
-            current_i = current_i - 1 // 2
+            self.values[current_i] = self.values[(current_i - 1) // 2]
+            self.values[(current_i - 1) // 2] = tmp
+            current_i = (current_i - 1) // 2
 
     def __repr__(self):
         return str([val.value for val in self.values])
