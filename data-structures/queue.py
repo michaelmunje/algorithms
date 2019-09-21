@@ -7,7 +7,7 @@ class Queue:
         self.length = 0
 
     def dequeue(self):
-        if not self.__is_empty():
+        if not self.is_empty():
             dequeued_element = self.elements[0]
             self.elements = self.elements[1:]
             self.length -= 1
@@ -19,8 +19,11 @@ class Queue:
         self.elements.append(new)
         self.length += 1
 
-    def __is_empty(self):
+    def is_empty(self):
         return self.length == 0
+
+    def __repr__(self):
+        return str(self.elements)
 
 
 class TestSolution(unittest.TestCase):

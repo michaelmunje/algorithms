@@ -1,8 +1,10 @@
 import unittest
+from queue import Queue
 
 
 def dfs(g, s, d):
     visited = [False] * len(g.nodes)
+    current_node = s
     if depth_first_search(g, s, d, visited) is True:
         return True
     else:
@@ -17,6 +19,22 @@ def depth_first_search(g, s, d, visited):
                 return True
             else:
                 return depth_first_search(g, i, d, visited)
+
+
+def breadth_first_search(g, s, d):
+    visited = [False] * len(g.nodes)
+    q = Queue()
+    q.enqueue(s)
+    while not q.is_empty():
+        current = q.dequeue()
+        visited[current] = True
+        for i in range(len(g.nodes)):
+            if g.edges[current][i] == 1 and visited[i] is False:
+                if d == i:
+                    return True
+                else:
+                    q.enqueue(i)
+    return False
 
 
 class UnweightedGraph:
@@ -60,6 +78,18 @@ class TestSolution(unittest.TestCase):
         self.assertTrue(dfs(g, 0, 4))
         self.assertTrue(dfs(g, 0, 5))
 
+    def test_case2(self):
+        g = UnweightedGraph(6)
+        g.add_directed_edge(0, 1)
+        g.add_directed_edge(1, 2)
+        g.add_directed_edge(1, 3)
+        self.assertTrue(breadth_first_search(g, 0, 1))
+        self.assertTrue(breadth_first_search(g, 0, 3))
+        self.assertFalse(breadth_first_search(g, 0, 4))
+        g.add_directed_edge(4, 5)
+        g.add_directed_edge(3, 4)
+        self.assertTrue(breadth_first_search(g, 0, 4))
+        self.assertTrue(breadth_first_search(g, 0, 5))
 
 
 if __name__ == '__main__':
