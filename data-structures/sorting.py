@@ -92,11 +92,30 @@ def merge_sort(a, l, r):
         return [a[l], a[r]] if a[l] < a[r] else [a[r], a[l]]
 
 
+def bubble_sort(a):
+    sorts_happened = True
+    while sorts_happened:
+        sorts_happened = False
+        for i in range(len(a) - 1):
+            if a[i] > a[i+1]:
+                a[i], a[i+1] = a[i+1], a[i]
+                sorts_happened = True
+    return a
+
+
 class TestSolution(unittest.TestCase):
 
     def test_case1(self):
         a = [5, 2, 1, 4, 2, 1]
         self.assertEqual(heap_sort(a), [1, 1, 2, 2, 4, 5])
+        a = [5, 2, 1, 4, 2, 1, 10]
+        self.assertEqual(heap_sort(a), [1, 1, 2, 2, 4, 5, 10])
+
+    def test_case2(self):
+        a = [5, 2, 1, 4, 2, 1]
+        self.assertEqual(bubble_sort(a), [1, 1, 2, 2, 4, 5])
+        a = [5, 2, 1, 4, 2, 1, 10]
+        self.assertEqual(bubble_sort(a), [1, 1, 2, 2, 4, 5, 10])
 
 
 if __name__ == '__main__':
