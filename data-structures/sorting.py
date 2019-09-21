@@ -103,6 +103,22 @@ def bubble_sort(a):
     return a
 
 
+def insertion_sort(a):
+    for i in range(1, len(a)):
+        if a[i-1] > a[i]:
+            tmp = a[i]
+            shift = 0
+            for j in range(0, i):
+                if tmp <= a[j]:
+                    shift = j
+                    break
+            for j in range(0, i - shift):
+                a[i - j] = a[i - j - 1]
+            a[shift] = tmp
+
+    return a
+
+
 class TestSolution(unittest.TestCase):
 
     def test_case1(self):
@@ -116,6 +132,16 @@ class TestSolution(unittest.TestCase):
         self.assertEqual(bubble_sort(a), [1, 1, 2, 2, 4, 5])
         a = [5, 2, 1, 4, 2, 1, 10]
         self.assertEqual(bubble_sort(a), [1, 1, 2, 2, 4, 5, 10])
+
+    def test_case3(self):
+        a = [1, 2, 3]
+        self.assertEqual(insertion_sort(a), [1, 2, 3])
+        a = [3, 2, 1]
+        self.assertEqual(insertion_sort(a), [1, 2, 3])
+        a = [5, 2, 1, 4, 2, 1]
+        self.assertEqual(insertion_sort(a), [1, 1, 2, 2, 4, 5])
+        a = [5, 2, 1, 4, 2, 1, 10]
+        self.assertEqual(insertion_sort(a), [1, 1, 2, 2, 4, 5, 10])
 
 
 if __name__ == '__main__':
