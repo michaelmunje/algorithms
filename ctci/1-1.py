@@ -1,7 +1,7 @@
 import unittest
 
 
-def isUniqueBitwise(s):
+def is_unique_bitwise(s):  # O(n)
     checker = 0
     for c in s:
         val = ord(c) - ord('a')
@@ -11,7 +11,7 @@ def isUniqueBitwise(s):
     return True
 
 
-def is_unique_sorted(s):
+def is_unique_sorted(s):  # O(nlogn)
     s = sorted(s)
     if not s:
         return True
@@ -23,60 +23,61 @@ def is_unique_sorted(s):
     return True
 
 
-def isUnique(s):
+def is_unique(s):  # O(n)
     chars = dict()
-    for i in range(len(s)):
-        if s[i] in chars:
-            if chars[s[i]] == 1:
+    for ch in s:
+        if ch in chars:
+            if chars[ch] == 1:
                 return False
-        chars[s[i]] = 1
+        chars[ch] = 1
     return True
 
 
-def isUniqueNoDs(s):
-    for i in range(len(s)):
-        for j in range(i + 1, len(s)):
-            if s[i] == s[j]:
+def is_unique_no_ds(s):  # O(n^2)
+    for i, ch1 in enumerate(s):
+        for ch2 in s[i+1:]:
+            if ch1 == ch2:
                 return False
     return True
 
 
 class TestSolution(unittest.TestCase):
-    def testUniqueStrings(self):
-        self.assertTrue(isUnique("abcdefg"))
-        self.assertTrue(isUnique("man"))
-        self.assertTrue(isUnique(""))
+    def test_unique_strings(self):
+        self.assertTrue(is_unique("abcdefg"))
+        self.assertTrue(is_unique("man"))
+        self.assertTrue(is_unique(""))
 
-    def testNonUniqueStrings(self):
-        self.assertFalse(isUnique("nascar"))
-        self.assertFalse(isUnique("mansion"))
+    def test_non_unique_strings(self):
+        self.assertFalse(is_unique("nascar"))
+        self.assertFalse(is_unique("mansion"))
 
-    def testUniqueStringsNoDs(self):
-        self.assertTrue(isUniqueNoDs("abcdefg"))
-        self.assertTrue(isUniqueNoDs("man"))
-        self.assertTrue(isUniqueNoDs(""))
+    def test_unique_strings_no_ds(self):
+        self.assertTrue(is_unique_no_ds("abcdefg"))
+        self.assertTrue(is_unique_no_ds("man"))
+        self.assertTrue(is_unique_no_ds(""))
 
-    def testNonUniqueStringsNoDs(self):
-        self.assertFalse(isUniqueNoDs("nascar"))
-        self.assertFalse(isUniqueNoDs("mansion"))
+    def test_non_unique_strings_no_ds(self):
+        self.assertFalse(is_unique_no_ds("nascar"))
+        self.assertFalse(is_unique_no_ds("mansion"))
 
-    def testUniqueStringsBitwise(self):
-        self.assertTrue(isUniqueBitwise("abcdefg"))
-        self.assertTrue(isUniqueBitwise("man"))
-        self.assertTrue(isUniqueBitwise(""))
+    def test_unique_strings_bitwise(self):
+        self.assertTrue(is_unique_bitwise("abcdefg"))
+        self.assertTrue(is_unique_bitwise("man"))
+        self.assertTrue(is_unique_bitwise(""))
 
-    def testNonUniqueStringsBitwise(self):
-        self.assertFalse(isUniqueBitwise("nascar"))
-        self.assertFalse(isUniqueBitwise("mansion"))
+    def test_non_unique_strings_bitwise(self):
+        self.assertFalse(is_unique_bitwise("nascar"))
+        self.assertFalse(is_unique_bitwise("mansion"))
 
-    def testUniqueStringsSorted(self):
+    def test_unique_strings_sorted(self):
         self.assertTrue(is_unique_sorted("abcdefg"))
         self.assertTrue(is_unique_sorted("man"))
         self.assertTrue(is_unique_sorted(""))
 
-    def testNonUniqueStringsSorted(self):
+    def test_non_unique_strings_sorted(self):
         self.assertFalse(is_unique_sorted("nascar"))
         self.assertFalse(is_unique_sorted("mansion"))
+
 
 if __name__ == '__main__':
     unittest.main()
