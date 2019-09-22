@@ -1,45 +1,47 @@
-# URLify: Write a method to replace all spaces in a string with '%20: You may assume that the string
-# has sufficient space at the end to hold the additional characters, and that you are given the "true"
-# length of the string. (Note: If implementing in Java, please use a character array so that you can
-# perform this operation in place.)
-# EXAMPLE
-# Input: "Mr John Smith ", 13
-# Output: "Mr%20John%20Smith"
+import unittest
 
 
-def URLify(s):  # runtime: O(n)
-    outString = ""
-    for i in range(len(s)):
-        if s[i] != " ":
-            outString += s[i]
+def make_url(s):  # runtime: O(n)
+    out_string = ""
+    for c in s:
+        if c != " ":
+            out_string += c
         else:
-            outString += "%20"
-    return outString
+            out_string += "%20"
+    return out_string
 
 
-# def URLifyInPlace(s, trueLength):
-    # since this is python, strings are immutable
-    # therefore i present the algorithm applicable
-    # to a more suitable programming language
-    # currentTrueLength = trueLength
-    # for (int i = 0; i < currentTrueLength; i++)
-    # {
-    #    if (s[i] == " ")
-    #        for (int j = currentTrueLength; j > i + 1; j--)
-    #           s[j + 2] = s[j - 1]
-    #        s[i] = "%"
-    #        s[i + 1] = "2"
-    #        s[i + 2] = "0"
-    #        currentTrueLength += 3;
-    # }
+def make_url_no_additional_memory(s):  # runtime: O(n^2)
+    s = list(s)  # Since strings are immutable in python
+    for i in range(len(s)):
+        if s[i] == ' ':
+            for j in range(1, len(s) - i - 2):
+                s[-j] = s[-j-2]
+            s[i] = '%'
+            s[i + 1] = '2'
+            s[i + 2] = '0'
+    return ''.join(s)
 
 
-def testURLify():
-    assert URLify("abc cba") == "abc%20cba"
-    assert URLify("Mr John Smith") == "Mr%20John%20Smith"
-    assert URLify("abb ") == "abb%20"
+class TestSolution(unittest.TestCase):
+    def test_url(self):
+        self.assertEqual(make_url("abc cba"), "abc%20cba")
+        self.assertEqual(make_url("Mr John Smith"), "Mr%20John%20Smith")
+        self.assertEqual(make_url("abb "), "abb%20")
+
+    def test_url_no_spaces(self):
+        self.assertEqual(make_url("abc"), "abc")
+        self.assertEqual(make_url("MrJohnSmith"), "MrJohnSmith")
+
+    def test_url_no_mem(self):
+        self.assertEqual(make_url_no_additional_memory("abc cba  "), "abc%20cba")
+        self.assertEqual(make_url_no_additional_memory("Mr John Smith    "), "Mr%20John%20Smith")
+        self.assertEqual(make_url_no_additional_memory("abb   "), "abb%20")
+
+    def test_url_no_spaces_no_mem(self):
+        self.assertEqual(make_url_no_additional_memory("abc"), "abc")
+        self.assertEqual(make_url_no_additional_memory("MrJohnSmith"), "MrJohnSmith")
 
 
-def testURLifyNoSpaces():
-    assert URLify("abc") == "abc"
-    assert URLify("MrJohnSmith") == "MrJohnSmith"
+if __name__ == '__main__':
+    unittest.main()
