@@ -11,6 +11,18 @@ def isUniqueBitwise(s):
     return True
 
 
+def is_unique_sorted(s):
+    s = sorted(s)
+    if not s:
+        return True
+    prev = s[0]
+    for i in range(1, len(s)):
+        if s[i] == prev:
+            return False
+        prev = s[i]
+    return True
+
+
 def isUnique(s):
     chars = dict()
     for i in range(len(s)):
@@ -56,6 +68,15 @@ class TestSolution(unittest.TestCase):
     def testNonUniqueStringsBitwise(self):
         self.assertFalse(isUniqueBitwise("nascar"))
         self.assertFalse(isUniqueBitwise("mansion"))
+
+    def testUniqueStringsSorted(self):
+        self.assertTrue(is_unique_sorted("abcdefg"))
+        self.assertTrue(is_unique_sorted("man"))
+        self.assertTrue(is_unique_sorted(""))
+
+    def testNonUniqueStringsSorted(self):
+        self.assertFalse(is_unique_sorted("nascar"))
+        self.assertFalse(is_unique_sorted("mansion"))
 
 if __name__ == '__main__':
     unittest.main()
