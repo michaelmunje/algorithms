@@ -1,43 +1,49 @@
-# Is Unique: Implement an algorithm to determine if a string has all unique characters. What if you
-# cannot use additional data structures?
+import unittest
 
 
-def isPermutation(s, p):  # runtime: O(n)
+def is_permutation(s, p):  # runtime: O(n)
     chars = dict()
-    chars2 = dict()
-    for i in range(len(s)):
-        if s[i] in chars:
-            chars[s[i]] += 1
+
+    for c in s:
+        if c in chars:
+            chars[c] += 1
         else:
-            chars[s[i]] = 1
-    for i in range(len(p)):
-        if p[i] in chars2:
-            chars2[p[i]] += 1
+            chars[c] = 1
+
+    for c in p:
+        if c in chars:
+            chars[c] -= 1
         else:
-            chars2[p[i]] = 1
-    if (len(s) != len(p)):
-        return False
-    for entry in chars:
-        if (entry not in chars2):
             return False
-        if (chars[entry] != chars2[entry]):
+
+    for _, value in chars.items():
+        if value != 0:
             return False
+
     return True
 
 
-def isUniqueNoDs(s):
-    for i in range(len(s)):
-        for j in range(i + 1, len(s)):
-            if s[i] == s[j]:
-                return False
-    return True
+def is_permutation_sorted(s, p):
+    return sorted(s) == sorted(p)
 
 
-def testPermutationStrings():
-    assert isPermutation("abc", "cba") is True
-    assert isPermutation("abc", "acb") is True
+class TestSolution(unittest.TestCase):
+    def test_unique_strings(self):
+        self.assertTrue(is_permutation("abc", "cba"))
+        self.assertTrue(is_permutation("abc", "acb"))
+
+    def test_non_unique_strings(self):
+        self.assertFalse(is_permutation("abc", "cbad"))
+        self.assertFalse(is_permutation("abc", "abb"))
+
+    def test_unique_strings_sorted(self):
+        self.assertTrue(is_permutation_sorted("abc", "cba"))
+        self.assertTrue(is_permutation_sorted("abc", "acb"))
+
+    def test_non_unique_strings_sorted(self):
+        self.assertFalse(is_permutation_sorted("abc", "cbad"))
+        self.assertFalse(is_permutation_sorted("abc", "abb"))
 
 
-def testNonUniqueStrings():
-    assert isPermutation("abc", "cbad") is False
-    assert isPermutation("abc", "abb") is False
+if __name__ == '__main__':
+    unittest.main()
