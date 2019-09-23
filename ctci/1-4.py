@@ -43,7 +43,7 @@ def check_palindrome_perm_bitwise(s):  # O(n)
         if ch.isalpha():
             value = ord(ch) - ord('a')
             bits = bits ^ (1 << value)
-    return (bits ** (1/2)) / 1 == (bits ** (1/2)) // 1
+    return (bits - 1) & bits == 0
 
 
 class TestSolution(unittest.TestCase):
