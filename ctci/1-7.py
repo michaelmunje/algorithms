@@ -1,46 +1,38 @@
-# Rotate Matrix: Given an image represented by an NxN matrix, where each pixel in the image is 4
-# bytes, write a method to rotate the image by 90 degrees. Can you do this in place?
+import unittest
 
 
-def getTranspose(m):
-    mT = [[0 for x in range(len(m))] for y in range(len(m))]
-    for i in range(len(m[0])):
-        for j in range(len(m)):
-            mT[i][j] = m[len(m) - 1 - j][i]
-    return mT
+def rotate_point_90_cc(i, j, n):  # counter-clockwise
+    return n - 1 - j, i
 
 
-def testTranspose():
-    # m:
-    #  1 4
-    # -5 8
-    # mT:
-    # -5 1
-    #  8 4
-    m = [[1, 4],
-         [-5, 8]]
-    mT = [[-5, 1], [8, 4]]
-    assert getTranspose(m) == mT
-    # m:
-    #  1 4 5
-    # -5 8 9
-    #  7 3 2
-    # mT:
-    #  7 -5 1
-    #  3  8 4
-    #  2  9 5
-    m = [[1, 4, 5],
-         [-5, 8, 9],
-         [7, 3, 2]]
-    mT = [[7, -5, 1],
-          [3, 8, 4],
-          [2, 9, 5]]
-    assert getTranspose(m) == mT
+def rotate_image(pixels):
 
-    m = [[1, 0, 0],
-         [0, 1, 0],
-         [0, 0, 1]]
-    mT = [[0, 0, 1],
-          [0, 1, 0],
-          [1, 0, 0]]
-    assert getTranspose(m) == mT
+    n = len(pixels)
+
+    for i in range(n-1):
+        for j in range(i, n-1-i):
+            tmp = pixels[i][j]
+
+            a1, b1 = rotate_point_90_cc(i, j, n)
+            pixels[i][j] = pixels[a1][b1]
+
+            a2, b2 = rotate_point_90_cc(a1, b1, n)
+            pixels[a1][b1] = pixels[a2][b2]
+
+            a3, b3 = rotate_point_90_cc(a2, b2, n)
+            pixels[a2][b2] = pixels[a3][b3]
+
+            pixels[a3][b3] = tmp
+
+    return pixels
+
+
+class TestSolution(unittest.TestCase):
+    def test_rotation(self):
+        self.assertEqual(rotate_image([[1,2,3],[4,5,6],[7,8,9]]), [[7,4,1],[8,5,2],[9,6,3]])
+        self.assertEqual(rotate_image([[ 5, 1, 9,11],[ 2, 4, 8,10],[13, 3, 6, 7],[15,14,12,16]]),
+                         [[15, 13, 2, 5],[14, 3, 4, 1],[12, 6, 8, 9],[16, 7, 10, 11]])
+
+
+if __name__ == '__main__':
+    unittest.main()
