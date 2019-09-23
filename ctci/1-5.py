@@ -1,47 +1,46 @@
-# One Away: There are three types of edits that can be performed on strings: insert a character,
-# remove a character, or replace a character. Given two strings, write a function to check if they are
-# one edit (or zero edits) away.
-# EXAMPLE
-# pale, ple -> true
-# pales, pale -> true
-# pale, bale -> true
-# pale, bake -> false
+import unittest
 
 
-def checkOneAway(s1, s2):  # runtime: O(n)
-    foundOperation = False
-    if (len(s1) != len(s2) and len(s1) + 1 != len(s2) and len(s1) != len(s2) + 1):
+def check_one_away(s1, s2):  # O(n)
+
+    found_operation = False
+
+    if abs(len(s1) - len(s2)) > 1:
         return False
+
     i = 0
-    for j in range(len(s2)):
-        if (i >= len(s1)):
-            if (foundOperation is True):
+    j = 0
+
+    while i < len(s1) and j < len(s2):
+        if s1[i] != s2[j]:
+            if found_operation is True:
                 return False
-        elif (s1[i] != s2[j]):
-            if (foundOperation is False):
-                if (len(s1) < len(s2)):
-                    i += 2
-                elif (len(s1) == len(s1)):
-                    i += 1
-                foundOperation = True
-            else:
-                return False
-        else:
-            i += 1
+            found_operation = True
+            if len(s1) > len(s2):
+                i += 1
+            elif len(s1) < len(s2):
+                j += 1
+        i += 1
+        j += 1
+
     return True
 
 
-def testOneAway():
-    assert checkOneAway("fake", "fare") is True
-    assert checkOneAway("fare", "fare") is True
-    assert checkOneAway("fare", "farer") is True
-    assert checkOneAway("fare", "far") is True
-    assert checkOneAway("", " ") is True
+class TestSolution(unittest.TestCase):
+    def test_one_away(self):
+        self.assertTrue(check_one_away("fake", "fare"))
+        self.assertTrue(check_one_away("fare", "fare"))
+        self.assertTrue(check_one_away("fare", "farer"))
+        self.assertTrue(check_one_away("fare", "far"))
+        self.assertTrue(check_one_away("", " "))
+
+    def test_not_one_away(self):
+        self.assertFalse(check_one_away("fare", "farthest"))
+        self.assertFalse(check_one_away("fare", "fakes"))
+        self.assertFalse(check_one_away("", "  "))
+        self.assertFalse(check_one_away("", "fakes"))
+        self.assertFalse(check_one_away("fastest", "far"))
 
 
-def testNotOneAway():
-    assert checkOneAway("fare", "farthest") is False
-    assert checkOneAway("fare", "fakes") is False
-    assert checkOneAway("", "  ") is False
-    assert checkOneAway("", "fakes") is False
-    assert checkOneAway("fastest", "far") is False
+if __name__ == '__main__':
+    unittest.main()
