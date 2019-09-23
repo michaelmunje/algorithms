@@ -5,6 +5,10 @@ def rotate_point_90_cc(i, j, n):  # counter-clockwise
     return n - 1 - j, i
 
 
+def rotate_point_90(i, j, n):  # clockwise
+    return j, n - 1 - i
+
+
 def rotate_image(pixels):
 
     n = len(pixels)
