@@ -58,6 +58,41 @@ def is_linked_list_palindrome(head):  # O(n)
     return True
 
 
+def is_linked_list_palindrome_optimized(head):
+    if not head:
+        return True
+
+    stack = []
+
+    current_node = head
+    fast_node = current_node.next
+    middle = False
+
+    if not head.next:
+        return True
+
+    while current_node:
+
+        if fast_node:
+            stack.append(current_node.val)
+            fast_node = fast_node.next
+            if fast_node:
+                if not fast_node.next:
+                    middle = True
+                fast_node = fast_node.next
+
+        elif not middle:
+            if current_node.val != stack[-1]:
+                return False
+            stack.pop()
+        else:
+            middle = False
+
+        current_node = current_node.next
+
+    return True
+
+
 class TestSolution(unittest.TestCase):
     def test_palindrome(self):
         head = list_to_linked_list([7, 1, 6])
@@ -66,6 +101,14 @@ class TestSolution(unittest.TestCase):
         self.assertTrue(is_linked_list_palindrome(head))
         head = list_to_linked_list([1, 0, 0, 1])
         self.assertTrue(is_linked_list_palindrome(head))
+
+    def test_palindrome_optimized(self):
+        head = list_to_linked_list([7, 1, 6])
+        self.assertFalse(is_linked_list_palindrome_optimized(head))
+        head = list_to_linked_list([1, 0, 1])
+        self.assertTrue(is_linked_list_palindrome_optimized(head))
+        head = list_to_linked_list([1, 0, 0, 1])
+        self.assertTrue(is_linked_list_palindrome_optimized(head))
 
 
 if __name__ == '__main__':
