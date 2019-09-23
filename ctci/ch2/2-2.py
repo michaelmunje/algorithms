@@ -44,7 +44,7 @@ def find_kth_to_last(head, k):  # O(n)
     return behind_node
 
 
-def find_kth_to_last_rec(head, k):
+def find_kth_to_last_rec(head, k):  # O(n)
     if not head:
         return None, 0
     else:

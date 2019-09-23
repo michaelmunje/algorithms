@@ -27,7 +27,7 @@ def linked_list_list(head):  # Convenience function to get list of all ll values
     return ll_list
 
 
-def remove_middle_node(node):  # O(n)
+def remove_middle_node(node):
     if node.next:
         node.val = node.next.val
         node.next = node.next.next
