@@ -1,36 +1,39 @@
-# String Compression: Implement a method to perform basic string compression using the counts
-# of repeated characters. For example, the string aabcccccaaa would become a2b1c5a3. If the
-# "compressed" string would not become smaller than the original string, your method should return
-# the original string. You can assume the string has only uppercase and lowercase letters (a - z).
+import unittest
 
 
-def getCompression(s):  # runtime: O(n)
-    compressedString = ""
+def get_compression(chars):  # runtime: O(n)
+
+    compressed_string = ""
     i = 0
-    while (i < len(s)):
-        currentCount = 1
-        compressedString += s[i]
-        while (i + 1 < len(s) and s[i] == s[i + 1]):
+    while i < len(chars):
+        current_count = 1
+        compressed_string += chars[i]
+        while i + 1 < len(chars) and chars[i] == chars[i + 1]:
             i += 1
-            currentCount += 1
-        compressedString += str(currentCount)
+            current_count += 1
+        if current_count > 1:
+            compressed_string += str(current_count)
         i += 1
-    if (len(compressedString) < len(s)):
-        return compressedString
+
+    if len(compressed_string) > len(chars):
+        return chars
     else:
-        return s
+        return compressed_string
 
 
-def testCompression():
-    assert getCompression("aabcccccaaa") == "a2b1c5a3"
-    assert getCompression("aabbccdd") == "aabbccdd"
-    assert getCompression("aaabbbcccddd") == "a3b3c3d3"
-    assert getCompression("   ") == " 3"
-    assert getCompression("abbcccc") == "a1b2c4"
+class TestSolution(unittest.TestCase):
+    def test_compression(self):
+        self.assertEqual(get_compression("aabcccccaaa"), "a2bc5a3")
+        self.assertEqual(get_compression("aabbccdd"), "a2b2c2d2")
+        self.assertEqual(get_compression("aaabbbcccddd"), "a3b3c3d3")
+        self.assertEqual(get_compression("   "), " 3")
+        self.assertEqual(get_compression("abbcccc"),"ab2c4")
+
+    def test_no_compression(self):
+        self.assertEqual(get_compression("abc"), "abc")
+        self.assertEqual(get_compression(" "), " ")
+        self.assertEqual(get_compression("abcccc"), "abc4")
 
 
-def testNoCompression():
-    assert getCompression("abc") == "abc"
-    assert getCompression("a1b2c3") == "a1b2c3"
-    assert getCompression(" ") == " "
-    assert getCompression("abcccc") == "abcccc"
+if __name__ == '__main__':
+    unittest.main()
