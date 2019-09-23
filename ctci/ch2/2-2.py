@@ -18,7 +18,7 @@ def list_to_linked_list(a):
         return head
 
 
-def linked_list_list(head):   # Convenience function to get list of all ll values
+def linked_list_list(head):  # Convenience function to get list of all ll values
     current_node = head
     ll_list = []
     while current_node:
@@ -44,12 +44,32 @@ def find_kth_to_last(head, k):  # O(n)
     return behind_node
 
 
+def find_kth_to_last_rec(head, k):
+    if not head:
+        return None, 0
+    else:
+        node, index = find_kth_to_last_rec(head.next, k)
+        index += 1
+        if node:
+            return node, index
+        if index == k:
+            return head, index
+        else:
+            return None, index
+
+
 class TestSolution(unittest.TestCase):
     def test_kth_to_last(self):
         head = list_to_linked_list([1, 2, 3, 4, 5])
         self.assertEqual(find_kth_to_last(head, 4).val, 2)
         self.assertEqual(find_kth_to_last(head, 2).val, 4)
         self.assertNotEqual(find_kth_to_last(head, 3).val, 4)
+
+    def test_kth_to_last_rec(self):
+        head = list_to_linked_list([1, 2, 3, 4, 5])
+        self.assertEqual(find_kth_to_last_rec(head, 4)[0].val, 2)
+        self.assertEqual(find_kth_to_last_rec(head, 2)[0].val, 4)
+        self.assertNotEqual(find_kth_to_last_rec(head, 3)[0].val, 4)
 
 
 if __name__ == '__main__':
