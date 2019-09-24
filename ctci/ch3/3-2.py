@@ -19,10 +19,10 @@ class Stack:
 
     def pop(self):
         if not self.is_empty:
+            self.size -= 1
+            if self.size == 0:
+                self.is_empty = True
             return self.values.pop()[0]
-        self.size -= 1
-        if self.size == 0:
-            self.is_empty = True
 
     def min(self):
         if not self.is_empty:
