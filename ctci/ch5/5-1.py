@@ -4,8 +4,8 @@ import unittest
 def bit_insertion(a, b, i, j):
     mask = ~0
     mask <<= j
-    mask += (1 << i) - 1
-    return (a & mask) + (b << i)
+    mask |= (1 << i) - 1
+    return (a & mask) | (b << i)
 
 
 class TestSolution(unittest.TestCase):
