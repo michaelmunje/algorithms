@@ -9,17 +9,13 @@ class Node:
 
 
 def dfs(root, target):
+    if not root:
+        return False
 
     if root == target:
         return True
 
-    if root.left:
-        if dfs(root.left, target):
-            return True
-
-    if root.right:
-        if dfs(root.right, target):
-            return True
+    return dfs(root.left, target) or dfs(root.right, target)
 
 
 def get_common_ancestor(parent, root, p, q):
