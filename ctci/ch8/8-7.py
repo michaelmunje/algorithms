@@ -4,13 +4,17 @@ import unittest
 def get_permutations(s):
     perms = []
     chosen = [False for _ in s]
-    get_permutations_helper(s, len(s), chosen, [], perms)
+    for i in range(len(s) + 1):
+        chosen = [False for _ in s]
+        get_permutations_helper(s, i, chosen, [], perms)
+
     return perms
 
 
 def get_permutations_helper(s, n, chosen, current_perm, perms):
     if len(current_perm) == n:
         perms.append(''.join(current_perm))
+        print(''.join(current_perm))
 
     for i in range(n):
         if chosen[i]:
